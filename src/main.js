@@ -8,6 +8,8 @@ window.addEventListener('DOMContentLoaded', () => {
 // layer for circle
   const ringsLayer = L.layerGroup().addTo(map);
   const selectElement = document.getElementById('weapon-select')
+  const multiModeCheckBox = document.getElementById('multi-mode')
+  const clearBtn = document.getElementById('clear-btn')
 
   weapons_data.forEach((weapon) => {
     const option = document.createElement('option');
@@ -16,13 +18,21 @@ window.addEventListener('DOMContentLoaded', () => {
     selectElement.appendChild(option);
   });
 
-  map.on('click', (e) => {
+  clearBtn.addEventListener('click', () => {
     ringsLayer.clearLayers();
+  });
+
+  map.on('click', (e) => {
+    if (!multiModeCheckBox.checked) {
+      ringsLayer.clearLayers();
+    }
 
     const { lat, lng } = e.latlng;
     const selectId = selectElement.value;
     const currentWeapon = weapons_data.find((w) => w.id === selectId);
     if (!currentWeapon) return;
+
+    const batteryGroup = L.layerGroup();
 //radius in meters (km*1000)
     const circle = L.circle([lat, lng], {
       radius: currentWeapon.baseRangeKm * 1000,
@@ -47,12 +57,19 @@ const popupContent = `
         <strong>${currentWeapon.name}</strong><br/>
         <span>Type: ${currentWeapon.category}</span><br>
         <b>Calculated distance:</b> ${currentWeapon.baseRangeKm} km
+        <small style="color: #888;">ПКМ по точці для видалення</small>
         </div>`;
+//delete battery in right click mouse
         centerPoint.bindPopup(popupContent);
-        
-        ringsLayer.addLayer(circle);
-        ringsLayer.addLayer(centerPoint)
-        
+        centerPoint.on('contextmenu', (event) =>{
+          L.DomEvent.stopPropagation(event);
+          ringsLayer.removeLayer(batteryGroup);
+        });
+
+        batteryGroup.addLayer(circle);
+        batteryGroup.addLayer(centerPoint);
+        ringsLayer.addLayer(batteryGroup);
+
         centerPoint.openPopup();
   });
 });

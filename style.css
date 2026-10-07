@@ -45,3 +45,25 @@ html, body, #map {
   border-radius: 4px;
   cursor: pointer;
 }
+.mode-toggle label{
+  font-weight: normal;
+  font-size: 10pt;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  user-select: none;
+}
+.btn-clear {
+  background: #f44336;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 10pt;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.btn-clear:hover {
+  background: #d32f2f;
+}
