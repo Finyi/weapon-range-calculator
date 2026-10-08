@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Range Calculator</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <div class="control-panel">
+      <label for="weapon-select"></label>
+      <select id="weapon-select"></select>
+      <div class="mode-toggle">
+        <label>
+          <input type="checkbox" id="multi-mode">Multi mode
+        </label>
+      </div>
+      <button id="clear-btn" class="btn-clear" type="button">Clear map</button>
+    </div>
+    <div id="map"></div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
