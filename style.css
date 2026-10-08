@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Google+Sans+Code:ital,wght,MONO@0,300..800,1;1,300..800,1&family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 * {
   box-sizing: border-box;
   margin: 0;
@@ -8,6 +9,20 @@ html, body, #map {
   height: 100%;
   overflow: hidden;
   background-color: #1a1a1a;
+}
+.leaflet-top.leaflet-left {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.leaflet-control-layers-toggle {
+  width: 32px !important;
+  height: 32px !important;
+}
+.leaflet-control-layers-expanded {
+  padding: 6px 10px !important;
+  font-size: 11px !important;
+  min-width: 140px;
 }
 #popup {
   font-size: 9pt;
@@ -36,26 +51,38 @@ html, body, #map {
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
 .control-panel label {
+  font-family: "Google Sans Code", monospace;
   font-size: 12pt;
   font-weight: bold;
 }
 .control-panel select {
+  font-family: "Google Sans Code", monospace;
+  background: #404b5a;
+  outline: none;
+  color: #eceff1;
   padding: 6px 8px;
   font-size: 10pt;
   border-radius: 4px;
   cursor: pointer;
 }
-.mode-toggle label{
-  font-weight: normal;
-  font-size: 10pt;
+.mode-toggle label {
+  font-size: 9pt;
+  color: #eceff1;
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
   cursor: pointer;
   user-select: none;
 }
+.mode-toggle input[type="checkbox"] {
+  accent-color: #00e5ff;
+  width: 15px;
+  height: 15px;
+  cursor: pointer;
+}
 .btn-clear {
   background: #f44336;
+  font-family: "Google Sans Code", monospace;;
   color: white;
   border: none;
   padding: 5px 10px;
